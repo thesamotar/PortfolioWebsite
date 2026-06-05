@@ -3,10 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Security -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://placehold.co https://ghchart.rshah.org; connect-src 'self';" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    
+    <!-- SEO & Identity -->
     <meta name="description" content="Abhishek — Software Engineer & Builder. Portfolio showcasing projects, writing, and ideas." />
     <meta name="theme-color" content="#F4F0E6" />
     <title>Abhishek — Portfolio</title>
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="canonical" href="https://abhishek.dev/" />
+    
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://abhishek.dev/" />
+    <meta property="og:title" content="Abhishek — Portfolio" />
+    <meta property="og:description" content="Software Engineer & Builder. Crafting systems, shipping products, writing about both." />
+    <meta property="og:image" content="https://abhishek.dev/og-image.jpg" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://abhishek.dev/" />
+    <meta property="twitter:title" content="Abhishek — Portfolio" />
+    <meta property="twitter:description" content="Software Engineer & Builder. Crafting systems, shipping products, writing about both." />
+    <meta property="twitter:image" content="https://abhishek.dev/og-image.jpg" />
   </head>
   <body>
     <div id="root"></div>

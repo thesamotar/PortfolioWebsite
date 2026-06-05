@@ -1,6 +1,6 @@
 import { useState } from "react";
 import profileContent from "../data/profileContent";
-import { BentoBox, ProjectsSection } from "../components/Bento";
+import { GridSection, ProjectsSection } from "../components/Bento";
 import ProjectModal from "../components/Modal/ProjectModal";
 
 /**
@@ -18,9 +18,9 @@ export default function ProjectsPage() {
       </header>
 
       <div className="page-content">
-        <BentoBox id="all-projects" header="All Projects" size="full" accent="teal">
+        <GridSection id="all-projects" columns={3}>
           <ProjectsSection items={projects} onProjectClick={setActiveProject} />
-        </BentoBox>
+        </GridSection>
       </div>
 
       <ProjectModal

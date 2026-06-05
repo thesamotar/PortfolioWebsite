@@ -1,5 +1,5 @@
 import profileContent from "../data/profileContent";
-import { BentoBox, IdeasSection } from "../components/Bento";
+import { GridSection, IdeasSection } from "../components/Bento";
 
 /**
  * IdeasPage — Product ideas and conceptual thinking.
@@ -15,9 +15,9 @@ export default function IdeasPage() {
       </header>
 
       <div className="page-content">
-        <BentoBox id="product-ideas" header="Product Ideas" size="full" accent="mustard">
+        <GridSection id="product-ideas" columns={3}>
           <IdeasSection items={ideas} />
-        </BentoBox>
+        </GridSection>
       </div>
     </>
   );

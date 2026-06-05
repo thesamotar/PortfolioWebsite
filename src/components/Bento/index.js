@@ -1,4 +1,4 @@
-export { default as BentoBox } from "./BentoBox";
+export { default as GridSection } from "./GridSection";
 export { default as ProjectsSection } from "./ProjectsSection";
 export { default as StatusSection } from "./StatusSection";
 export { default as ActionsSection } from "./ActionsSection";

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import profileContent from "../data/profileContent";
-import { BentoBox, BlogSection } from "../components/Bento";
+import { GridSection, BlogSection } from "../components/Bento";
 import BlogModal from "../components/Modal/BlogModal";
 
 /**
@@ -8,6 +8,7 @@ import BlogModal from "../components/Modal/BlogModal";
  */
 export default function BlogsPage() {
   const { posts } = profileContent;
+  const sortedPosts = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
   const [activePost, setActivePost] = useState(null);
 
   return (
@@ -18,9 +19,9 @@ export default function BlogsPage() {
       </header>
 
       <div className="page-content">
-        <BentoBox id="blog-feed" header="All Posts" size="full" accent="mustard">
-          <BlogSection posts={posts} onPostClick={setActivePost} />
-        </BentoBox>
+        <GridSection id="blog-feed" columns={3}>
+          <BlogSection posts={sortedPosts} onPostClick={setActivePost} />
+        </GridSection>
       </div>
 
       <BlogModal
