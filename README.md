@@ -1,6 +1,6 @@
 # Technical Portfolio 
 
-A blazing fast, retro-technical portfolio built with React and Vite. It features a responsive "Bento Box" grid system and an integrated headless Markdown CMS.
+A blazing fast, retro-technical portfolio built with React and Vite. It features a responsive "Bento Box" grid system, an integrated headless Markdown CMS, and a dual reading experience — inline reader on desktop and modal popups on mobile.
 
 ## Quick Start
 
@@ -26,7 +26,7 @@ title: "Your Catchy Title"
 date: "2026-06-06"
 tags: ["Learning", "Featured"] 
 thumbnail: "/images/your-image.jpg"
-snippet: "A brief 1-2 sentence summary that shows up on the card."
+snippet: "A brief 1-2 sentence summary that shows up on the card and in the inline reader header."
 ---
 Write your actual blog post here. You can use standard Markdown like **bold**, lists, and `code blocks`.
 ```
@@ -68,8 +68,28 @@ badge: "Developer Tools"
 tags: ["Featured"]
 thumbnail: "https://placehold.co/800x600/1A1A18/C4604A?text=Placeholder"
 ---
-A detailed paragraph describing your product idea.
+A detailed paragraph describing your product idea. This text will appear as the subtitle in the inline reader header on desktop.
 ```
+
+---
+
+## 🖥️ Reading Experience (Desktop vs Mobile)
+
+The site has two different reading experiences depending on screen size:
+
+### Desktop (≥ 901px) — Inline Reader
+When you click on any blog, project, or idea card on a laptop/desktop:
+- The **page heading** (e.g. "Blogs") is replaced with the **post title**, with tags beside it and an `×` close button on the right.
+- The **post summary/snippet** and **date** appear below the title, in the same position as the original page subtitle.
+- The **bento grid** is replaced with the **full post content** rendered as Markdown.
+- Clicking the `×` button reverts everything back to the original grid view instantly.
+- The navigation bar stays visible at all times.
+
+### Mobile (< 901px) — Modal Popup
+On phones/tablets, clicking a card opens a **standard modal popup overlay** that slides up over the current page. This keeps the mobile experience snappy and touch-friendly.
+
+### Featured Section Carousel (Mobile)
+On mobile, the homepage featured posts display as a **horizontal swipeable carousel** with indicator dots at the bottom. Swiping changes the active dot.
 
 ---
 
@@ -90,3 +110,27 @@ Inside that file, you will find simple Javascript objects that control the non-m
 ```
 
 Simply change the text inside the quotes, save the file, and the website will update instantly!
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+├── components/
+│   ├── Bento/              # Grid section components (BlogSection, ProjectsSection, IdeasSection, etc.)
+│   ├── Modal/              # Modal components for mobile reading (BlogModal, ProjectModal)
+│   └── InlineReader.jsx    # Desktop inline reader that replaces the grid with content
+├── content/                # Markdown CMS — all your posts live here
+│   ├── blogs/              # Blog post .md files
+│   ├── projects/           # Project .md files
+│   └── ideas/              # Idea .md files
+├── data/
+│   └── profileContent.js   # Identity, social links, and content aggregation
+├── hooks/
+│   └── useIsDesktop.js     # Hook to detect desktop (≥901px) vs mobile
+├── pages/                  # Page components (HomePage, BlogsPage, ProjectsPage, IdeasPage)
+└── styles/
+    ├── global.css           # All component styles
+    └── variables.css        # Design tokens (colors, fonts, spacing)
+```
