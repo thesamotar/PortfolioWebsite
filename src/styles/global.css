@@ -331,8 +331,11 @@ img {
     display: flex;
     justify-content: center;
     gap: 8px;
-    margin-top: 8px;
-    margin-bottom: var(--space-sm);
+    margin-top: -12px;
+    margin-bottom: 0;
+  }
+  .home-featured-grid {
+    margin-bottom: var(--space-lg);
   }
   .carousel-dot {
     width: 6px;
