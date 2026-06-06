@@ -1,49 +1,92 @@
-# Portfolio Website
+# Technical Portfolio 
 
-Welcome to the Portfolio Website repository! This project is a modern, highly interactive, and retro-themed developer portfolio built with React and Vite.
+A blazing fast, retro-technical portfolio built with React and Vite. It features a responsive "Bento Box" grid system and an integrated headless Markdown CMS.
 
-This document serves as a guide for developers (and AI agents) who need to understand the architecture, design system, and content management of the site.
+## Quick Start
 
-## Tech Stack
-- **Framework**: React 18 + Vite
-- **Styling**: Vanilla CSS (`src/styles/global.css`)
-- **Routing**: React Router (`src/App.jsx` handles custom multi-page routing)
-- **Deployment**: Standard static site generation
+1. Install dependencies: `npm install`
+2. Start the local dev server: `npm run dev`
+3. Build for production: `npm run build`
 
-## Design System & Aesthetics
-The site employs a distinct "retro editorial" aesthetic:
-- **Colors**: Uses a warm paper background (`var(--canvas-paper)`: `#F5F2EB`) combined with stark, bold typography (`var(--ink)`: `#1A1A1A`). There are also accent colors like mustard, coral, and teal for tags.
-- **Typography**: Large, bold Serif fonts for headings (`var(--font-serif)`) paired with clean Sans-serif for body text, and Monospace for tags and metadata.
-- **Grid Layout**: Features a customized asymmetrical 3-column grid (`.grid-layout--3-col`). The very first card in any grid layout automatically spans 2 full rows and 1 column, creating a dominant editorial showcase, while subsequent cards neatly flow into the remaining columns.
-- **Interactive Cards**: Instead of flat cards, all project, blog, and idea cards have images that act as the background. By default, only the bold title text is visible at the bottom. When hovered, an opaque "paper" background smoothly slides upwards (using a robust CSS `max-height` transition) to reveal the hidden tags, descriptive summaries, and action links layered directly over the image.
+---
 
-## Content Management (`src/data/profileContent.js`)
-All content on the site is purely data-driven and decoupled from the UI components. To update the website's content, you only need to edit `src/data/profileContent.js`. No React component changes are required.
+## 📝 How to Write Content (The Markdown CMS)
 
-### 1. Selected / Featured Projects (Home Page)
-The Home Page pulls its featured projects dynamically based on tags. 
-- To feature a project on the Home Page, add the string `"Featured"` to its `tags` array inside the `projects` list.
+Your website is powered entirely by Markdown files (`.md`). You do not need to write any Javascript to create new posts. 
 
-### 2. Blogs / Posts
-- Posts are rendered on the `/blogs` route.
-- The `BlogsPage` component automatically sorts all posts chronologically in descending order (newest first) based on the `date` string in the object.
+All content lives in the `src/content/` directory. When you add a new file here, Vite will automatically discover it, parse it, and deploy it to your site.
 
-### 3. Adding Media
-- Thumbnails and images should be defined in the content objects (e.g., `thumbnail: "/path/to/image.png"`).
-- Currently, if an image is `null`, the UI falls back to a solid warm-grey placeholder block (`var(--canvas-warm)`).
+### 1. Adding a Blog Post
+Create a new `.md` file inside `src/content/blogs/`. 
 
-## Component Architecture
-- **Pages**: `HomePage`, `ProjectsPage`, `BlogsPage`, `IdeasPage`, `ConnectPage`
-- **Bento Sections**: The UI is composed of "Bento-style" grid sections (`GridSection`). This component handles the core structural layout and top borders, while its children (e.g., `ProjectsSection`, `BlogSection`, `IdeasSection`) map the data to the individual interactive cards.
-- **Modals**: Detailed case studies and full blog posts are rendered via floating overlays (e.g., `ProjectModal.jsx`, `BlogModal.jsx`).
+**Required Format:**
+```markdown
+---
+title: "Your Catchy Title"
+date: "2026-06-06"
+tags: ["Learning", "Featured"] 
+thumbnail: "/images/your-image.jpg"
+snippet: "A brief 1-2 sentence summary that shows up on the card."
+---
+Write your actual blog post here. You can use standard Markdown like **bold**, lists, and `code blocks`.
+```
+*Note:*
+- *Include `"Featured"` to place this post on the homepage Featured grid.*
+- *Include `"Learning"`, `"Reading"`, or `"Exploring"` to dynamically link this post to the corresponding tab in the "Working On" section of the homepage!*
 
-## Development Scripts
-- `npm install` - Install dependencies
-- `npm run dev` - Start the local development server (typically at `http://localhost:5173`)
-- `npm run build` - Build the production bundle
+### 2. Adding a Project
+Create a new `.md` file inside `src/content/projects/`.
 
-## AI Agent Instructions
-If you are an AI agent generating content or modifying this site:
-1. **Always edit `src/data/profileContent.js`** when adding new projects, blogs, or ideas.
-2. **Preserve the CSS Grid architecture** in `global.css`. If adding new sections, use the `<GridSection columns={3}>` component to ensure the layout remains consistent with the asymmetrical design.
-3. **Do not use Tailwind or inline styles**. All styling must reside in `src/styles/global.css` using the predefined CSS variables (tokens).
+**Required Format:**
+```markdown
+---
+title: "Project Name"
+tags: ["TypeScript", "React", "Featured", "Working On"]
+thumbnail: "/images/project-thumb.jpg"
+summary: "Short summary of what this project does."
+video: "https://example.com/demo.mp4" 
+---
+## The Problem
+Describe the problem.
+
+## The Solution
+Describe the solution.
+
+## The Impact
+Describe the impact.
+```
+*Note: `video` can be `null` if you don't have a demo video. Adding the `"Working On"` tag will put this project in the "Working On" section on the homepage.*
+
+### 3. Adding an Idea
+Create a new `.md` file inside `src/content/ideas/`.
+
+**Required Format:**
+```markdown
+---
+title: "Crazy Startup Idea"
+badge: "Developer Tools"
+tags: ["Featured"]
+thumbnail: "https://placehold.co/800x600/1A1A18/C4604A?text=Placeholder"
+---
+A detailed paragraph describing your product idea.
+```
+
+---
+
+## ⚙️ How to Edit the Site Structure
+
+If you want to edit the structural data of the website (like your Name, Email, or the Social Links in the Connect section), you should edit the `src/data/profileContent.js` file.
+
+Inside that file, you will find simple Javascript objects that control the non-markdown parts of the site:
+
+```javascript
+  /* ─── Identity ─── */
+  identity: {
+    name: "Abhishek",
+    title: "Software Engineer & Builder",
+    tagline: "Crafting systems, shipping products, writing about both.",
+    email: "abhishek@example.com",
+    // ...
+```
+
+Simply change the text inside the quotes, save the file, and the website will update instantly!

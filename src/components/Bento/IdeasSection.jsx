@@ -20,7 +20,7 @@ export default function IdeasSection({ items }) {
         <div className="project-card__tags">
           <span className="tag">{idea.badge}</span>
         </div>
-        <p className="project-card__summary">{idea.description}</p>
+        <p className="project-card__summary">{idea.body}</p>
         <span className="project-card__cta">Explore Idea</span>
       </div>
     </div>

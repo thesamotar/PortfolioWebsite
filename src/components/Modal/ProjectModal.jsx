@@ -1,4 +1,5 @@
 import { useEffect, useRef, useCallback, useState } from "react";
+import ReactMarkdown from "react-markdown";
 
 /**
  * ProjectModal — Case study overlay for project deep-dives.
@@ -43,7 +44,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
 
   if (!project) return null;
 
-  const { title, tags, caseStudy, video } = project;
+  const { title, tags, body, video } = project;
 
   return (
     <div
@@ -111,22 +112,11 @@ export default function ProjectModal({ project, isOpen, onClose }) {
             />
           )}
 
-          {/* Case Study Sections */}
-          {caseStudy && (
-            <>
-              <div className="case-section">
-                <div className="case-section__label">Problem</div>
-                <p className="case-section__text">{caseStudy.problem}</p>
-              </div>
-              <div className="case-section">
-                <div className="case-section__label">Solution</div>
-                <p className="case-section__text">{caseStudy.solution}</p>
-              </div>
-              <div className="case-section">
-                <div className="case-section__label">Impact</div>
-                <p className="case-section__text">{caseStudy.impact}</p>
-              </div>
-            </>
+          {/* Markdown Content */}
+          {body && (
+            <div className="markdown-content case-study-content">
+              <ReactMarkdown>{body}</ReactMarkdown>
+            </div>
           )}
         </div>
       </div>
