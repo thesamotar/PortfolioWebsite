@@ -262,8 +262,58 @@ img {
 }
 
 @media (max-width: 900px) {
+  /* Mobile Masonry Grid for subpages */
   .grid-layout--3-col, .grid-layout--2-col {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
+  }
+
+  /* Make the very first item span full width to start the masonry effect */
+  .grid-layout > .project-card:first-child {
+    grid-column: 1 / -1;
+  }
+  
+  /* Compact the text in masonry tiles so it fits the 2-column layout */
+  .grid-layout .project-card__title {
+    font-size: var(--fs-body);
+  }
+  .grid-layout .project-card__summary {
+    display: none; /* Hide summary on small tiles */
+  }
+  .grid-layout > .project-card:first-child .project-card__summary {
+    display: block; /* But keep it on the full-width featured tile */
+  }
+
+  /* Home Page Featured Area - Horizontal Snap Scroll */
+  .home-featured-grid .grid-layout {
+    display: flex !important;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: var(--space-md);
+    padding-bottom: var(--space-md);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+  }
+  .home-featured-grid .grid-layout::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+  
+  .home-featured-grid .grid-layout > * {
+    flex: 0 0 85%;
+    scroll-snap-align: center;
+  }
+  
+  .home-featured-grid .grid-layout > .project-card:first-child {
+    grid-column: auto; /* reset from masonry */
+  }
+  
+  /* Re-enable summary on horizontal scroll cards because they are 85% width */
+  .home-featured-grid .project-card__summary {
+    display: block !important;
+  }
+  .home-featured-grid .project-card__title {
+    font-size: var(--fs-h3) !important;
   }
 }
 

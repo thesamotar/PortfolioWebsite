@@ -80,8 +80,8 @@ export default function HomePage() {
       </header>
 
       <div className="page-content">
-        {/* Featured Mix */}
-        <GridSection id="selected-projects" columns={3}>
+        {/* Featured Content Area */}
+        <GridSection id="featured" columns={3} className="home-featured-grid">
           {allFeatured.map(item => {
             if (item._type === 'project') return <ProjectsSection key={item.title} items={[item]} onProjectClick={setActiveProject} />;
             if (item._type === 'post') return <BlogSection key={item.title} posts={[item]} onPostClick={setActivePost} />;
