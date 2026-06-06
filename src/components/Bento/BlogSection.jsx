@@ -11,6 +11,7 @@ export default function BlogSection({ posts, onPostClick }) {
       tabIndex={0}
       aria-label={`Read: ${post.title}`}
       onClick={() => onPostClick(post)}
+      onTouchStart={() => {}}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();

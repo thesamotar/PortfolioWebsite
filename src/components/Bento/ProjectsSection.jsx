@@ -11,6 +11,7 @@ export default function ProjectsSection({ items, onProjectClick }) {
       tabIndex={0}
       aria-label={`View case study: ${project.title}`}
       onClick={() => onProjectClick(project)}
+      onTouchStart={() => {}}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
