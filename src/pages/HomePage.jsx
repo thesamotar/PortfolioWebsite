@@ -6,6 +6,7 @@ import BlogModal from "../components/Modal/BlogModal";
 import InlineReader from "../components/InlineReader";
 import useIsDesktop from "../hooks/useIsDesktop";
 import Toast from "../components/Toast";
+import ResumeButton from "../components/ResumeButton";
 
 /**
  * HomePage — The default landing page.
@@ -120,7 +121,10 @@ export default function HomePage() {
         </header>
       ) : (
         <header className="hero">
-          <h1 className="hero__name">{identity.name}</h1>
+          <div className="hero__heading-row">
+            <h1 className="hero__name">{identity.name}</h1>
+            <ResumeButton />
+          </div>
           <p className="hero__tagline">{identity.tagline}</p>
         </header>
       )}
@@ -184,6 +188,15 @@ export default function HomePage() {
                     </span>
                   </div>
                 ))}
+              </div>
+              
+              {/* GitHub Activity */}
+              <div className="github-dashboard">
+                <img 
+                  src="https://ghchart.rshah.org/thesamotar" 
+                  alt="thesamotar's Github Activity" 
+                  style={{ width: "100%", opacity: 0.85, mixBlendMode: "multiply", marginTop: "1rem" }}
+                />
               </div>
             </GridSection>
           )}

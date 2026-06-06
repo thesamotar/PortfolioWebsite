@@ -4,6 +4,7 @@ import { GridSection, ProjectsSection } from "../components/Bento";
 import ProjectModal from "../components/Modal/ProjectModal";
 import InlineReader from "../components/InlineReader";
 import useIsDesktop from "../hooks/useIsDesktop";
+import ResumeButton from "../components/ResumeButton";
 
 /**
  * ProjectsPage — Full project gallery.
@@ -49,7 +50,10 @@ export default function ProjectsPage() {
           </>
         ) : (
           <>
-            <h1 className="page-header__title">Projects</h1>
+            <div className="page-header__heading-row">
+              <h1 className="page-header__title">Projects</h1>
+              <ResumeButton />
+            </div>
             <p className="page-header__sub">A selection of things I've built, shipped, and open-sourced.</p>
           </>
         )}

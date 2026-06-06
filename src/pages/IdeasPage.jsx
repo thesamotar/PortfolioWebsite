@@ -3,6 +3,7 @@ import profileContent from "../data/profileContent";
 import { GridSection, IdeasSection } from "../components/Bento";
 import InlineReader from "../components/InlineReader";
 import useIsDesktop from "../hooks/useIsDesktop";
+import ResumeButton from "../components/ResumeButton";
 
 /**
  * IdeasPage — Product ideas and conceptual thinking.
@@ -46,7 +47,10 @@ export default function IdeasPage() {
           </>
         ) : (
           <>
-            <h1 className="page-header__title">Ideas</h1>
+            <div className="page-header__heading-row">
+              <h1 className="page-header__title">Ideas</h1>
+              <ResumeButton />
+            </div>
             <p className="page-header__sub">Things I'd build if I had infinite weekends.</p>
           </>
         )}

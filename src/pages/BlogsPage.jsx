@@ -4,6 +4,7 @@ import { GridSection, BlogSection } from "../components/Bento";
 import BlogModal from "../components/Modal/BlogModal";
 import InlineReader from "../components/InlineReader";
 import useIsDesktop from "../hooks/useIsDesktop";
+import ResumeButton from "../components/ResumeButton";
 
 /**
  * BlogsPage — Full blog listing.
@@ -53,7 +54,10 @@ export default function BlogsPage() {
           </>
         ) : (
           <>
-            <h1 className="page-header__title">Blogs</h1>
+            <div className="page-header__heading-row">
+              <h1 className="page-header__title">Blogs</h1>
+              <ResumeButton />
+            </div>
             <p className="page-header__sub">Thinking out loud about systems, tools, and craft.</p>
           </>
         )}

@@ -89,7 +89,6 @@ const profileContent = {
       { label: "Email",     url: "mailto:abhishek@example.com",  icon: "✉" },
     ],
     actions: [
-      { label: "Download Resume PDF", action: "download-resume", icon: "↓" },
       { label: "Copy Email Address",  action: "copy-email",      icon: "✉" },
     ],
     status: {
