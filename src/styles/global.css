@@ -1282,3 +1282,19 @@ img {
   font-style: italic;
 }
 
+@media (max-width: 900px) {
+  .resume-button {
+    height: 32px;
+    padding: 0 12px;
+    gap: 6px;
+  }
+  
+  .resume-button__text {
+    font-size: 0.6rem;
+  }
+  
+  .resume-button svg {
+    width: 14px;
+    height: 14px;
+  }
+}
