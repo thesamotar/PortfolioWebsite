@@ -342,13 +342,13 @@ img {
 .project-card:hover .project-card__content .project-card__title,
 .project-card:hover .project-card__content .project-card__summary,
 .project-card:hover .project-card__content .project-card__cta {
-  color: var(--surface) !important;
+  color: #FFFFFF !important;
 }
 
 .project-card:hover .project-card__content .tag {
-  color: var(--surface) !important;
+  color: #FFFFFF !important;
   background: transparent !important;
-  border-color: rgba(253, 251, 245, 0.4) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
 }
 
 .project-card__title {
