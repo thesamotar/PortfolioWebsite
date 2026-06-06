@@ -1093,11 +1093,28 @@ img {
   gap: var(--space-sm);
 }
 
-.working-on__title {
+#working-on .section-header {
   font-family: var(--font-serif);
   font-size: var(--fs-h2);
   font-weight: 700;
+  text-transform: none;
+  letter-spacing: normal;
   color: var(--ink);
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: var(--space-xs);
+}
+
+.working-on__title {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--ink-medium);
+  border-bottom: var(--hairline);
+  padding-bottom: var(--space-xs);
+  margin-bottom: var(--space-xs);
 }
 
 .working-on__tags {
@@ -1144,6 +1161,19 @@ img {
 
   .page-content--connect {
     grid-template-columns: 1fr;
+  }
+
+  .github-dashboard {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .github-dashboard img {
+    width: 400% !important;
+    max-width: none !important;
+    flex-shrink: 0;
   }
 }
 

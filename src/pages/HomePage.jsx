@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import profileContent from "../data/profileContent";
-import { GridSection, ProjectsSection, BlogSection, IdeasSection, ConnectSection, ActionsSection } from "../components/Bento";
+import { GridSection, ProjectsSection, BlogSection, IdeasSection, ConnectSection } from "../components/Bento";
 import ProjectModal from "../components/Modal/ProjectModal";
 import BlogModal from "../components/Modal/BlogModal";
 import InlineReader from "../components/InlineReader";
@@ -47,35 +47,6 @@ export default function HomePage() {
     setToast((prev) => ({ ...prev, visible: false }));
   }, []);
 
-  const handleAction = useCallback(
-    (action) => {
-      if (action === "download-resume") {
-        window.open(identity.resumeUrl, "_blank", "noopener,noreferrer");
-      } else if (action === "copy-email") {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard
-            .writeText(identity.email)
-            .then(() => showToast("Email copied to clipboard"))
-            .catch(() => showToast("Copy failed — try manually"));
-        } else {
-          const ta = document.createElement("textarea");
-          ta.value = identity.email;
-          ta.style.position = "fixed";
-          ta.style.left = "-9999px";
-          document.body.appendChild(ta);
-          ta.select();
-          try {
-            document.execCommand("copy");
-            showToast("Email copied to clipboard");
-          } catch {
-            showToast("Copy failed — try manually");
-          }
-          document.body.removeChild(ta);
-        }
-      }
-    },
-    [identity, showToast]
-  );
 
   const activeItem = activeProject || activePost || activeIdea;
   const showInline = isDesktop && activeItem;
@@ -203,10 +174,6 @@ export default function HomePage() {
 
           {/* Connect Section */}
           <div className="home-footer page-content--connect">
-            <GridSection id="quick-actions" header="Quick Actions" columns={1} className="actions-box">
-              <ActionsSection actions={connect.actions} onAction={handleAction} />
-            </GridSection>
-
             <GridSection id="social-nodes" header="Find Me" columns={1}>
               <ConnectSection nodes={connect.nodes} />
             </GridSection>
