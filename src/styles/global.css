@@ -172,7 +172,7 @@ img {
 
 .page-content--connect {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
 }
 
 .page-content--connect .bento-box:first-child {
@@ -1093,7 +1093,7 @@ img {
   gap: var(--space-sm);
 }
 
-#working-on .section-header {
+#working-on .grid-section__title {
   font-family: var(--font-serif);
   font-size: var(--fs-h2);
   font-weight: 700;
