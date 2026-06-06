@@ -249,6 +249,11 @@ img {
   grid-template-columns: repeat(2, 1fr);
 }
 
+/* Default state: hide carousel indicators on desktop */
+.carousel-indicators {
+  display: none;
+}
+
 .grid-layout--3-col {
   grid-template-columns: repeat(3, 1fr);
 }
@@ -270,7 +275,7 @@ img {
 
   /* Make project cards taller (square) on mobile */
   .project-card {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1 / 1 !important;
   }
 
   /* Make the very first item span full width to start the masonry effect */
@@ -296,7 +301,7 @@ img {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     gap: var(--space-md);
-    padding-bottom: var(--space-md);
+    padding-bottom: var(--space-xs);
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none; /* Firefox */
   }
@@ -319,6 +324,30 @@ img {
   }
   .home-featured-grid .project-card__title {
     font-size: var(--fs-h3) !important;
+  }
+
+  /* Carousel Indicators on Mobile */
+  .carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 8px;
+    margin-bottom: var(--space-sm);
+  }
+  .carousel-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--ink);
+    border: none;
+    padding: 0;
+    opacity: 0.15;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+  }
+  .carousel-dot.is-active {
+    opacity: 1;
+    background-color: var(--mustard);
   }
 }
 

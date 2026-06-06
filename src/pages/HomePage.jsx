@@ -81,7 +81,7 @@ export default function HomePage() {
 
       <div className="page-content">
         {/* Featured Content Area */}
-        <GridSection id="featured" columns={3} className="home-featured-grid">
+        <GridSection id="featured" columns={3} className="home-featured-grid" showCarouselIndicator={true}>
           {allFeatured.map(item => {
             if (item._type === 'project') return <ProjectsSection key={item.title} items={[item]} onProjectClick={setActiveProject} />;
             if (item._type === 'post') return <BlogSection key={item.title} posts={[item]} onPostClick={setActivePost} />;
