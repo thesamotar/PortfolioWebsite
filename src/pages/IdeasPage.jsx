@@ -1,24 +1,66 @@
+import { useState } from "react";
 import profileContent from "../data/profileContent";
 import { GridSection, IdeasSection } from "../components/Bento";
+import InlineReader from "../components/InlineReader";
+import useIsDesktop from "../hooks/useIsDesktop";
 
 /**
  * IdeasPage — Product ideas and conceptual thinking.
+ * Desktop: clicking an idea swaps the header & grid for the idea content inline.
+ * Mobile: clicking an idea opens a modal (future) or does nothing.
  */
 export default function IdeasPage() {
   const { ideas } = profileContent;
+  const [activeIdea, setActiveIdea] = useState(null);
+  const isDesktop = useIsDesktop();
+
+  const showInline = isDesktop && activeIdea;
 
   return (
     <>
       <header className="page-header">
-        <h1 className="page-header__title">Ideas</h1>
-        <p className="page-header__sub">Things I'd build if I had infinite weekends.</p>
+        {showInline ? (
+          <>
+            <div className="page-header__top-row">
+              <div className="page-header__title-row">
+                <h1 className="page-header__title">{activeIdea.title}</h1>
+                {activeIdea.badge && (
+                  <div className="page-header__tags">
+                    <span className="tag">{activeIdea.badge}</span>
+                  </div>
+                )}
+              </div>
+              <button
+                className="inline-reader__close"
+                onClick={() => setActiveIdea(null)}
+                aria-label="Close"
+              >
+                ×
+              </button>
+            </div>
+            <div className="page-header__bottom-row">
+              {activeIdea.body && (
+                <p className="page-header__sub">{activeIdea.body}</p>
+              )}
+            </div>
+          </>
+        ) : (
+          <>
+            <h1 className="page-header__title">Ideas</h1>
+            <p className="page-header__sub">Things I'd build if I had infinite weekends.</p>
+          </>
+        )}
       </header>
 
-      <div className="page-content">
-        <GridSection id="product-ideas" columns={3}>
-          <IdeasSection items={ideas} />
-        </GridSection>
-      </div>
+      {showInline ? (
+        <InlineReader item={{ ...activeIdea, body: null }} onClose={() => setActiveIdea(null)} />
+      ) : (
+        <div className="page-content">
+          <GridSection id="product-ideas" columns={3}>
+            <IdeasSection items={ideas} onIdeaClick={setActiveIdea} />
+          </GridSection>
+        </div>
+      )}
     </>
   );
 }

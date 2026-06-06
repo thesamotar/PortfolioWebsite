@@ -751,7 +751,7 @@ img {
 /* ── Shared Shell ── */
 .modal-shell {
   width: 92%;
-  max-width: 680px;
+  max-width: 880px;
   max-height: 82vh;
   background: var(--surface);
   border: var(--hairline-dark);
@@ -768,7 +768,7 @@ img {
 
 /* ── Blog Ledger (wider) ── */
 .modal-shell--ledger {
-  max-width: 720px;
+  max-width: 940px;
   max-height: 88vh;
 }
 
@@ -1150,3 +1150,87 @@ img {
     padding-top: var(--space-sm);
   }
 }
+
+/* ==========================================================================
+   DESKTOP INLINE READER — Close Button & Content
+   ========================================================================== */
+
+/* The close button that appears in the page-header when reading inline */
+.inline-reader__close {
+  font-size: 2rem;
+  line-height: 1;
+  background: none;
+  border: none;
+  color: var(--ink);
+  cursor: pointer;
+  padding: 0 4px;
+  font-family: var(--font-sans);
+  opacity: 0.5;
+  transition: opacity var(--t-fast) ease;
+}
+.inline-reader__close:hover {
+  opacity: 1;
+}
+
+/* Make the page-header column layout when reading inline */
+.page-header:has(.inline-reader__close) {
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Top row: title+tags on left, X on right */
+.page-header__top-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Title and tags on the same line */
+.page-header__title-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  flex: 1;
+  min-width: 0;
+}
+
+/* X always pinned to the right */
+.page-header__top-row > .inline-reader__close {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.page-header__tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* Bottom row: summary on left, date on right */
+.page-header__bottom-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.page-header__date {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  color: var(--ink-light);
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+/* Summary paragraph in inline reader */
+.inline-reader__summary {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  color: var(--ink-light);
+  margin-bottom: var(--space-lg);
+  font-style: italic;
+}
+

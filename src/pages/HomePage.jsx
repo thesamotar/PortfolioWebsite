@@ -3,17 +3,22 @@ import profileContent from "../data/profileContent";
 import { GridSection, ProjectsSection, BlogSection, IdeasSection, ConnectSection, ActionsSection } from "../components/Bento";
 import ProjectModal from "../components/Modal/ProjectModal";
 import BlogModal from "../components/Modal/BlogModal";
+import InlineReader from "../components/InlineReader";
+import useIsDesktop from "../hooks/useIsDesktop";
 import Toast from "../components/Toast";
 
 /**
  * HomePage — The default landing page.
- * Shows: Featured Mix (Projects, Blogs, Ideas) -> Working On -> Connect (Quick Actions & Socials)
+ * Desktop: clicking a post/project swaps the hero & grid for inline content.
+ * Mobile: clicking opens standard modals.
  */
 export default function HomePage() {
   const { identity, projects, posts, ideas, connect } = profileContent;
   const [activeProject, setActiveProject] = useState(null);
   const [activePost, setActivePost] = useState(null);
+  const [activeIdea, setActiveIdea] = useState(null);
   const [toast, setToast] = useState({ message: "", visible: false });
+  const isDesktop = useIsDesktop();
 
   // Aggregate anything with the "Featured" tag
   const featuredProjects = projects.filter(p => p.tags?.includes("Featured")).map(p => ({ ...p, _type: 'project' }));
@@ -71,95 +76,146 @@ export default function HomePage() {
     [identity, showToast]
   );
 
+  const activeItem = activeProject || activePost || activeIdea;
+  const showInline = isDesktop && activeItem;
+
+  const handleClose = () => {
+    setActiveProject(null);
+    setActivePost(null);
+    setActiveIdea(null);
+  };
+
   return (
     <>
-      {/* Hero */}
-      <header className="hero">
-        <h1 className="hero__name">{identity.name}</h1>
-        <p className="hero__tagline">{identity.tagline}</p>
-      </header>
-
-      <div className="page-content">
-        {/* Featured Content Area */}
-        <GridSection id="featured" columns={3} className="home-featured-grid" showCarouselIndicator={true}>
-          {allFeatured.map(item => {
-            if (item._type === 'project') return <ProjectsSection key={item.title} items={[item]} onProjectClick={setActiveProject} />;
-            if (item._type === 'post') return <BlogSection key={item.title} posts={[item]} onPostClick={setActivePost} />;
-            if (item._type === 'idea') return <IdeasSection key={item.title} items={[item]} />;
-            return null;
-          })}
-        </GridSection>
-
-        {/* Working On — latest build focus */}
-        {workingProject && (
-          <GridSection id="working-on" header="Working On" columns={2}>
-            <div 
-              className="working-on interactive-card"
-              onClick={() => setActiveProject(workingProject)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  setActiveProject(workingProject);
-                }
-              }}
+      {/* Hero — replaced with post title on desktop when reading */}
+      {showInline ? (
+        <header className="page-header">
+          <div className="page-header__top-row">
+            <div className="page-header__title-row">
+              <h1 className="page-header__title">{activeItem.title}</h1>
+              {activeItem.tags && activeItem.tags.length > 0 && (
+                <div className="page-header__tags">
+                  {activeItem.tags.map((t) => (
+                    <span key={t} className="tag">{t}</span>
+                  ))}
+                </div>
+              )}
+            </div>
+            <button
+              className="inline-reader__close"
+              onClick={handleClose}
+              aria-label="Close"
             >
-              <h3 className="working-on__title">{workingProject.title}</h3>
-              <div className="working-on__tags">
-                {workingProject.tags.map((tag) => (
-                  <span key={tag} className="tag">{tag}</span>
+              ×
+            </button>
+          </div>
+          <div className="page-header__bottom-row">
+            {(activeItem.snippet || activeItem.summary) && (
+              <p className="page-header__sub">{activeItem.snippet || activeItem.summary}</p>
+            )}
+            {activeItem.date && (
+              <span className="page-header__date">{activeItem.date}</span>
+            )}
+          </div>
+        </header>
+      ) : (
+        <header className="hero">
+          <h1 className="hero__name">{identity.name}</h1>
+          <p className="hero__tagline">{identity.tagline}</p>
+        </header>
+      )}
+
+      {/* Main content — swapped for inline reader on desktop */}
+      {showInline ? (
+        <InlineReader item={activeItem} onClose={handleClose} />
+      ) : (
+        <div className="page-content">
+          {/* Featured Content Area */}
+          <GridSection id="featured" columns={3} className="home-featured-grid" showCarouselIndicator={true}>
+            {allFeatured.map(item => {
+              if (item._type === 'project') return <ProjectsSection key={item.title} items={[item]} onProjectClick={setActiveProject} />;
+              if (item._type === 'post') return <BlogSection key={item.title} posts={[item]} onPostClick={setActivePost} />;
+              if (item._type === 'idea') return <IdeasSection key={item.title} items={[item]} onIdeaClick={setActiveIdea} />;
+              return null;
+            })}
+          </GridSection>
+
+          {/* Working On — latest build focus */}
+          {workingProject && (
+            <GridSection id="working-on" header="Working On" columns={2}>
+              <div 
+                className="working-on interactive-card"
+                onClick={() => setActiveProject(workingProject)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setActiveProject(workingProject);
+                  }
+                }}
+              >
+                <h3 className="working-on__title">{workingProject.title}</h3>
+                <div className="working-on__tags">
+                  {workingProject.tags.map((tag) => (
+                    <span key={tag} className="tag">{tag}</span>
+                  ))}
+                </div>
+                <p className="working-on__desc">{workingProject.summary}</p>
+              </div>
+              <div className="working-on__vectors">
+                {vectors.map((v) => (
+                  <div 
+                    key={v.label} 
+                    className="status-item interactive-row"
+                    onClick={() => setActivePost(v.post)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        setActivePost(v.post);
+                      }
+                    }}
+                  >
+                    <span className="status-item__label">{v.label}</span>
+                    <span className="status-item__value status-link-text">
+                      {v.post.title}
+                    </span>
+                  </div>
                 ))}
               </div>
-              <p className="working-on__desc">{workingProject.summary}</p>
-            </div>
-            <div className="working-on__vectors">
-              {vectors.map((v) => (
-                <div 
-                  key={v.label} 
-                  className="status-item interactive-row"
-                  onClick={() => setActivePost(v.post)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      setActivePost(v.post);
-                    }
-                  }}
-                >
-                  <span className="status-item__label">{v.label}</span>
-                  <span className="status-item__value status-link-text">
-                    {v.post.title}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </GridSection>
-        )}
+            </GridSection>
+          )}
 
-        {/* Connect Section */}
-        <div className="home-footer page-content--connect">
-          <GridSection id="quick-actions" header="Quick Actions" columns={1} className="actions-box">
-            <ActionsSection actions={connect.actions} onAction={handleAction} />
-          </GridSection>
+          {/* Connect Section */}
+          <div className="home-footer page-content--connect">
+            <GridSection id="quick-actions" header="Quick Actions" columns={1} className="actions-box">
+              <ActionsSection actions={connect.actions} onAction={handleAction} />
+            </GridSection>
 
-          <GridSection id="social-nodes" header="Find Me" columns={1}>
-            <ConnectSection nodes={connect.nodes} />
-          </GridSection>
+            <GridSection id="social-nodes" header="Find Me" columns={1}>
+              <ConnectSection nodes={connect.nodes} />
+            </GridSection>
+          </div>
         </div>
-      </div>
+      )}
 
-      <ProjectModal
-        project={activeProject}
-        isOpen={!!activeProject}
-        onClose={() => setActiveProject(null)}
-      />
-      <BlogModal
-        post={activePost}
-        isOpen={!!activePost}
-        onClose={() => setActivePost(null)}
-      />
+      {/* Modals only render on mobile */}
+      {!isDesktop && (
+        <>
+          <ProjectModal
+            project={activeProject}
+            isOpen={!!activeProject}
+            onClose={() => setActiveProject(null)}
+          />
+          <BlogModal
+            post={activePost}
+            isOpen={!!activePost}
+            onClose={() => setActivePost(null)}
+          />
+        </>
+      )}
 
       <Toast message={toast.message} visible={toast.visible} onHide={hideToast} />
     </>

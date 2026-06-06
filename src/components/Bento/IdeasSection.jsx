@@ -1,9 +1,23 @@
 /**
  * IdeasSection — Product ideas with category badges.
+ * Accepts an optional onIdeaClick handler for inline reading.
  */
-export default function IdeasSection({ items }) {
+export default function IdeasSection({ items, onIdeaClick }) {
   return items.map((idea) => (
-    <div key={idea.title} className="project-card">
+    <div
+      key={idea.title}
+      className="project-card"
+      role={onIdeaClick ? "button" : undefined}
+      tabIndex={onIdeaClick ? 0 : undefined}
+      onClick={onIdeaClick ? () => onIdeaClick(idea) : undefined}
+      onTouchStart={onIdeaClick ? () => {} : undefined}
+      onKeyDown={onIdeaClick ? (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onIdeaClick(idea);
+        }
+      } : undefined}
+    >
       <div className="project-card__thumb">
         {idea.thumbnail && (
           <img 
