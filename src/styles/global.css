@@ -409,6 +409,7 @@ img {
   position: relative;
   overflow: hidden;
   border-radius: 4px;
+  border: 1px solid var(--ink);
   cursor: pointer;
   aspect-ratio: 16 / 9;
 }
@@ -610,6 +611,7 @@ img {
   padding: 12px;
   margin: -12px;
   border-radius: 8px;
+  border: 1px solid var(--ink);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
