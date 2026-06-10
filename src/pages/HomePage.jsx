@@ -130,13 +130,33 @@ export default function HomePage() {
                   }
                 }}
               >
-                <h3 className="working-on__title">{workingProject.title}</h3>
-                <div className="working-on__tags">
-                  {workingProject.tags.map((tag) => (
-                    <span key={tag} className="tag">{tag}</span>
-                  ))}
+                <div className="working-on__content">
+                  <h3 className="working-on__title">{workingProject.title}</h3>
+                  <div className="working-on__tags">
+                    {workingProject.tags.map((tag) => (
+                      <span key={tag} className="tag">{tag}</span>
+                    ))}
+                  </div>
+                  <p className="working-on__desc">{workingProject.summary}</p>
                 </div>
-                <p className="working-on__desc">{workingProject.summary}</p>
+                <div className="working-on__media">
+                  {workingProject.thumbnail ? (
+                    <img 
+                      src={workingProject.thumbnail} 
+                      alt={workingProject.title} 
+                      className="working-on__image" 
+                    />
+                  ) : workingProject.video ? (
+                    <video 
+                      src={workingProject.video} 
+                      className="working-on__video" 
+                      autoPlay 
+                      loop 
+                      muted 
+                      playsInline
+                    />
+                  ) : null}
+                </div>
               </div>
               <div className="working-on__vectors">
                 {vectors.map((v) => (

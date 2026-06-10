@@ -1087,6 +1087,7 @@ img {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   gap: var(--space-lg);
+  align-items: center;
 }
 
 #working-on .working-on.interactive-card {
@@ -1097,6 +1098,34 @@ img {
 #working-on .working-on.interactive-card:hover {
   background-color: var(--surface);
   border-color: var(--ink);
+}
+
+.working-on__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  justify-content: center;
+}
+
+.working-on__media {
+  width: 100%;
+  height: 100%;
+  min-height: 180px;
+  border: var(--border-img);
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: var(--canvas-warm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.working-on__image,
+.working-on__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .working-on__main {
@@ -1126,7 +1155,7 @@ img {
   color: var(--ink);
   border-bottom: var(--hairline);
   padding-bottom: var(--space-xs);
-  margin-bottom: var(--space-xs);
+  margin-bottom: 0;
 }
 
 .working-on__tags {
@@ -1198,7 +1227,7 @@ img {
   #working-on .working-on.interactive-card::before {
     content: '';
     grid-column: 1;
-    grid-row: 1 / span 2;
+    grid-row: 1;
     width: 8px;
     height: 8px;
     border-radius: 50%;
@@ -1211,7 +1240,7 @@ img {
   #working-on .working-on.interactive-card::after {
     content: '›';
     grid-column: 3;
-    grid-row: 1 / span 2;
+    grid-row: 1;
     font-size: 1.5rem;
     font-weight: 300;
     color: var(--ink-light);
@@ -1226,9 +1255,19 @@ img {
     background: var(--surface-hover);
   }
 
-  #working-on .working-on__title {
+  #working-on .working-on__content {
     grid-column: 2;
     grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  #working-on .working-on__media {
+    display: none;
+  }
+
+  #working-on .working-on__title {
     border-bottom: none;
     padding-bottom: 0;
     margin-bottom: 0;
@@ -1245,8 +1284,6 @@ img {
 
   #working-on .working-on__desc {
     display: block;
-    grid-column: 2;
-    grid-row: 2;
     font-size: var(--fs-small);
     color: var(--ink-light);
     line-height: 1.4;
