@@ -1089,6 +1089,16 @@ img {
   gap: var(--space-lg);
 }
 
+#working-on .working-on.interactive-card {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+#working-on .working-on.interactive-card:hover {
+  background-color: var(--surface);
+  border-color: var(--ink);
+}
+
 .working-on__main {
   display: flex;
   flex-direction: column;
@@ -1108,12 +1118,12 @@ img {
 }
 
 .working-on__title {
-  font-family: var(--font-mono);
-  font-size: var(--fs-micro);
-  font-weight: 600;
-  letter-spacing: var(--ls-caps);
-  text-transform: uppercase;
-  color: var(--ink-medium);
+  font-family: var(--font-serif);
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  letter-spacing: var(--ls-tight);
+  text-transform: none;
+  color: var(--ink);
   border-bottom: var(--hairline);
   padding-bottom: var(--space-xs);
   margin-bottom: var(--space-xs);
@@ -1173,9 +1183,10 @@ img {
 
   /* ── Working On: Accordion Mobile Layout ── */
   #working-on .working-on.interactive-card {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
-    gap: 12px;
+    gap: 6px 12px;
     padding: 14px 12px;
     margin: 0;
     border: none;
@@ -1186,22 +1197,28 @@ img {
 
   #working-on .working-on.interactive-card::before {
     content: '';
+    grid-column: 1;
+    grid-row: 1 / span 2;
     width: 8px;
     height: 8px;
     border-radius: 50%;
     background: var(--teal);
     flex-shrink: 0;
     animation: pulse-glow 2s ease-in-out infinite;
+    align-self: center;
   }
 
   #working-on .working-on.interactive-card::after {
     content: '›';
+    grid-column: 3;
+    grid-row: 1 / span 2;
     font-size: 1.5rem;
     font-weight: 300;
     color: var(--ink-light);
     margin-left: auto;
     flex-shrink: 0;
     line-height: 1;
+    align-self: center;
   }
 
   #working-on .working-on.interactive-card:hover {
@@ -1210,6 +1227,8 @@ img {
   }
 
   #working-on .working-on__title {
+    grid-column: 2;
+    grid-row: 1;
     border-bottom: none;
     padding-bottom: 0;
     margin-bottom: 0;
@@ -1220,9 +1239,19 @@ img {
     letter-spacing: var(--ls-tight);
   }
 
-  #working-on .working-on__tags,
-  #working-on .working-on__desc {
+  #working-on .working-on__tags {
     display: none;
+  }
+
+  #working-on .working-on__desc {
+    display: block;
+    grid-column: 2;
+    grid-row: 2;
+    font-size: var(--fs-small);
+    color: var(--ink-light);
+    line-height: 1.4;
+    text-align: left;
+    margin-top: 2px;
   }
 
   #working-on .working-on__vectors {
