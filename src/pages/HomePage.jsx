@@ -39,6 +39,7 @@ export default function HomePage() {
     { label: "Exploring", post: getVectorPost("Exploring") },
   ].filter(v => v.post);
 
+  // eslint-disable-next-line no-unused-vars
   const showToast = useCallback((msg) => {
     setToast({ message: msg, visible: true });
   }, []);
@@ -82,8 +83,10 @@ export default function HomePage() {
             </button>
           </div>
           <div className="page-header__bottom-row">
-            {(activeItem.snippet || activeItem.summary) && (
-              <p className="page-header__sub">{activeItem.snippet || activeItem.summary}</p>
+            {(activeItem.snippet || activeItem.summary || (activeItem._type === 'idea' && activeItem.body)) && (
+              <p className="page-header__sub">
+                {activeItem.snippet || activeItem.summary || (activeItem._type === 'idea' && activeItem.body)}
+              </p>
             )}
             {activeItem.date && (
               <span className="page-header__date">{activeItem.date}</span>
@@ -102,7 +105,10 @@ export default function HomePage() {
 
       {/* Main content — swapped for inline reader on desktop */}
       {showInline ? (
-        <InlineReader item={activeItem} onClose={handleClose} />
+        <InlineReader
+          item={(activeIdea && !activeIdea.summary) ? { ...activeIdea, body: null } : activeItem}
+          onClose={handleClose}
+        />
       ) : (
         <div className="page-content">
           {/* Featured Content Area */}

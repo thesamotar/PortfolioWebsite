@@ -3,7 +3,7 @@
  * Each card opens a case study modal on click.
  */
 export default function ProjectsSection({ items, onProjectClick }) {
-  return items.map((project, idx) => (
+  return items.map((project) => (
     <div
       key={project.title}
       className="project-card"

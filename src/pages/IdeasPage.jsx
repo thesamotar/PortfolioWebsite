@@ -40,8 +40,8 @@ export default function IdeasPage() {
               </button>
             </div>
             <div className="page-header__bottom-row">
-              {activeIdea.body && (
-                <p className="page-header__sub">{activeIdea.body}</p>
+              {(activeIdea.summary || activeIdea.body) && (
+                <p className="page-header__sub">{activeIdea.summary || activeIdea.body}</p>
               )}
             </div>
           </>
@@ -57,7 +57,10 @@ export default function IdeasPage() {
       </header>
 
       {showInline ? (
-        <InlineReader item={{ ...activeIdea, body: null }} onClose={() => setActiveIdea(null)} />
+        <InlineReader
+          item={activeIdea.summary ? activeIdea : { ...activeIdea, body: null }}
+          onClose={() => setActiveIdea(null)}
+        />
       ) : (
         <div className="page-content">
           <GridSection id="product-ideas" columns={3}>

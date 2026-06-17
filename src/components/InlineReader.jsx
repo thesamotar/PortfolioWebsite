@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
  * replacing the bento grid on desktop. Uses the same page-content
  * container so the layout stays identical.
  */
-export default function InlineReader({ item, onClose }) {
+export default function InlineReader({ item }) {
   if (!item) return null;
 
   return (

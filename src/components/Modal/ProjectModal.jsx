@@ -9,6 +9,10 @@ export default function ProjectModal({ project, isOpen, onClose }) {
   const closeRef = useRef(null);
   const [videoActive, setVideoActive] = useState(false);
 
+  if (!isOpen && videoActive) {
+    setVideoActive(false);
+  }
+
   // Focus trap & escape handler
   useEffect(() => {
     if (isOpen && closeRef.current) {
@@ -20,12 +24,6 @@ export default function ProjectModal({ project, isOpen, onClose }) {
     return () => {
       document.body.style.overflow = "";
     };
-  }, [isOpen]);
-
-  useEffect(() => {
-    if (!isOpen) {
-      setVideoActive(false);
-    }
   }, [isOpen]);
 
   const handleKeyDown = useCallback(

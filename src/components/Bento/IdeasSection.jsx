@@ -34,7 +34,7 @@ export default function IdeasSection({ items, onIdeaClick }) {
         <div className="project-card__tags">
           <span className="tag">{idea.badge}</span>
         </div>
-        <p className="project-card__summary">{idea.body}</p>
+        <p className="project-card__summary">{idea.summary || idea.body}</p>
         <span className="project-card__cta">Explore Idea</span>
       </div>
     </div>
