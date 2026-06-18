@@ -982,6 +982,28 @@ img {
   margin: var(--space-lg) 0 var(--space-sm);
 }
 
+.ledger-body h3 {
+  font-family: var(--font-serif);
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  color: var(--ink);
+  margin: var(--space-xl) 0 var(--space-md);
+  letter-spacing: var(--ls-tight);
+}
+
+.ledger-body h3:first-child {
+  margin-top: 0;
+}
+
+.ledger-body h4 {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: var(--space-lg) 0 var(--space-sm);
+  letter-spacing: var(--ls-tight);
+}
+
 .ledger-body h2:first-child {
   margin-top: 0;
 }
@@ -1009,6 +1031,56 @@ img {
 
 .ledger-body li {
   margin-bottom: var(--space-xs);
+}
+
+/* ── Blog Images ── */
+.ledger-body img {
+  display: block;
+  width: 100%;
+  max-width: 720px;
+  height: auto;
+  margin: var(--space-lg) auto;
+  border: var(--border-img);
+  border-radius: 4px;
+  object-fit: contain;
+}
+
+/* ── Hero / Banner Image ── */
+.ledger-body img[alt*="hero"],
+.ledger-body img[alt*="banner"] {
+  max-width: 100%;
+  margin: 0 auto var(--space-lg);
+  border-radius: 0;
+}
+
+/* ── Image Gallery Strip (5 images side by side) ── */
+.ledger-body .image-gallery {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-sm);
+  margin: var(--space-lg) 0;
+}
+
+.ledger-body .image-gallery img {
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 1440 / 803;
+  object-fit: cover;
+  border: var(--border-img);
+  border-radius: 4px;
+}
+
+@media (max-width: 900px) {
+  .ledger-body .image-gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 580px) {
+  .ledger-body .image-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* ==========================================================================
@@ -1464,6 +1536,21 @@ img {
   color: var(--ink-light);
   margin-bottom: var(--space-lg);
   font-style: italic;
+}
+
+/* ── Hero Banner Image ── */
+.inline-reader__hero {
+  max-width: var(--grid-max);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.inline-reader__hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: var(--border-img);
+  border-radius: 4px;
 }
 
 @media (max-width: 900px) {

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useCallback } from "react";
 import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
 
 /**
  * BlogModal — Full editorial reading overlay ("Modal Ledger").
@@ -64,7 +65,22 @@ export default function BlogModal({ post, isOpen, onClose }) {
             <span className="ledger-meta__date">{post.date}</span>
           </div>
           <div className="ledger-body markdown-content">
-            <ReactMarkdown>{post.body}</ReactMarkdown>
+            <ReactMarkdown
+              rehypePlugins={[rehypeRaw]}
+              components={{
+                img: ({ src, alt, ...props }) => (
+                  <img
+                    src={src}
+                    alt={alt || ""}
+                    loading="lazy"
+                    decoding="async"
+                    {...props}
+                  />
+                ),
+              }}
+            >
+              {post.body}
+            </ReactMarkdown>
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
 
 /**
  * InlineReader — Renders post/project content directly in the page,
@@ -15,7 +16,22 @@ export default function InlineReader({ item }) {
         {/* Markdown Body */}
         {item.body && (
           <div className="ledger-body">
-            <ReactMarkdown>{item.body}</ReactMarkdown>
+            <ReactMarkdown
+              rehypePlugins={[rehypeRaw]}
+              components={{
+                img: ({ src, alt, ...props }) => (
+                  <img
+                    src={src}
+                    alt={alt || ""}
+                    loading="lazy"
+                    decoding="async"
+                    {...props}
+                  />
+                ),
+              }}
+            >
+              {item.body}
+            </ReactMarkdown>
           </div>
         )}
       </div>

@@ -1,7 +1,8 @@
 ---
-title: "PADO — Designing a Cup That Sounds Like the Sea"
+title: "PADO — Echoes of the Ocean"
 badge: "Product Design"
 tags: ["Featured"]
+thumbnail: "/images/ideas/pado/hero.jpg"
 summary: "An insulated tumbler that makes the sound of waves when you tilt it to drink. Made from recycled steel and ocean-bound plastic."
 ---
 Most of us love the sea but get to see it perhaps once a year, on a holiday, before going back to our desks where the closest thing to a wave is the water we drink.
@@ -14,6 +15,8 @@ Thus, came PADO (*pado* is "wave" in Korean): an insulated tumbler that makes th
 I initially flirted with an idea of a straw that would whistle as you sipped, but that meant restricting the idea to a straw-only product. The better solution was to use the one motion every tumbler already demands: **tilting it to drink**. Drinking is the trigger. No button, no app, nothing to remember.
 
 The mechanism is quite simple, borrowed from the ocean drum. Tiny beads roll over curved ridges and create a soft sound of waves crashing on the shore. While the mechanism was simple, implementing it required some more brainstorming and the "skilled" art of compromises.
+
+![The mechanism — beads roll over ridges to create wave sounds](/images/ideas/pado/mechanism.jpg)
 
 ### Second: Where does the sound actually live?
 
@@ -47,6 +50,20 @@ So PADO isn't just one cup: it's a **(coast)line you can collect**.
 *   **Seasons of the sea:** one shoreline from dawn to dark.
 *   **Kids' series:** friendly, big-eyed sea creatures.
 
+<div class="image-gallery">
+
+![Signature horizon collection](/images/ideas/pado/moods-horizon.jpg)
+
+![World beaches collection](/images/ideas/pado/moods-world.jpg)
+
+![Seasons of the sea collection](/images/ideas/pado/moods-seasons.jpg)
+
+![Ocean by the Day collection](/images/ideas/pado/moods-ocean-day.jpg)
+
+![Kids' series collection](/images/ideas/pado/moods-kids.jpg)
+
+</div>
+
 Same soul, but a new mood every time.
 
 ### Closing the Loop
@@ -54,3 +71,4 @@ Same soul, but a new mood every time.
 The material closes the loop: a recycled-steel body, with beads made from ocean-bound plastic. The sound of the ocean, made from what we pull out of the ocean.
 
 I started with a brief and ended with a cup that, when you tip it back, hands you a half-second of surf and the sea pretending to be in the room. It won't fool a marine biologist. But in the city traffic, in the sweltering heat, it doesn't have to. It just has to remind you the ocean is still out there, and still worth missing and definitely worth protecting.
+

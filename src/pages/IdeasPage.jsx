@@ -57,10 +57,22 @@ export default function IdeasPage() {
       </header>
 
       {showInline ? (
-        <InlineReader
-          item={activeIdea.summary ? activeIdea : { ...activeIdea, body: null }}
-          onClose={() => setActiveIdea(null)}
-        />
+        <>
+          {activeIdea.thumbnail && (
+            <div className="inline-reader__hero">
+              <img
+                src={activeIdea.thumbnail}
+                alt={activeIdea.title}
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+          )}
+          <InlineReader
+            item={activeIdea.summary ? activeIdea : { ...activeIdea, body: null }}
+            onClose={() => setActiveIdea(null)}
+          />
+        </>
       ) : (
         <div className="page-content">
           <GridSection id="product-ideas" columns={3}>
