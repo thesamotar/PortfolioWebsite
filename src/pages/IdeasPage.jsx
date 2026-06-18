@@ -58,11 +58,11 @@ export default function IdeasPage() {
 
       {showInline ? (
         <>
-          {activeIdea.thumbnail && (
+          {activeIdea.banner && (
             <div className="inline-reader__hero">
               <img
-                src={activeIdea.thumbnail}
-                alt={activeIdea.title}
+                src={activeIdea.banner}
+                alt={activeIdea.bannerAlt || "Busan Series"}
                 loading="eager"
                 decoding="async"
               />

@@ -3,12 +3,17 @@ title: "PADO — Echoes of the Ocean"
 badge: "Product Design"
 tags: ["Featured"]
 thumbnail: "/images/ideas/pado/hero.jpg"
+#banner: "/images/ideas/pado/hero.jpg"
+#bannerAlt: "Busan Series"
 summary: "An insulated tumbler that makes the sound of waves when you tilt it to drink. Made from recycled steel and ocean-bound plastic."
 ---
+
 Most of us love the sea but get to see it perhaps once a year, on a holiday, before going back to our desks where the closest thing to a wave is the water we drink.
 So I gave myself a small design brief: what if an ordinary object could hand you a tiny piece of the shoreline, every single day? Not something as static as a photo of the sea but something you invoke and experience.
 
-Thus, came PADO (*pado* is "wave" in Korean): an insulated tumbler that makes the sound of waves when you tilt it to drink. 
+![Busan Series](/images/ideas/pado/hero.jpg)
+
+Thus, came PADO (*pado* is "wave" in Korean): an insulated tumbler that makes the sound of waves when you tilt it to drink.
 
 ### First problem: How do we produce the sound?
 

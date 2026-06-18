@@ -969,7 +969,7 @@ img {
 
 .ledger-body {
   font-family: var(--font-sans);
-  font-size: 0.95rem;
+  font-size: 1.14rem;
   line-height: 1.75;
   color: var(--ink-medium);
 }
@@ -1043,6 +1043,25 @@ img {
   border: var(--border-img);
   border-radius: 4px;
   object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.2s ease;
+}
+
+.ledger-body img:hover {
+  transform: scale(1.015);
+  filter: brightness(1.05);
+}
+
+.ledger-body img[alt*="mechanism"] {
+  width: 40%;
+  max-width: 320px;
+  min-width: 240px;
+}
+
+.ledger-body img[alt="Busan Series"] {
+  width: 60%;
+  max-width: 432px;
+  min-width: 280px;
 }
 
 /* ── Hero / Banner Image ── */
@@ -1546,11 +1565,21 @@ img {
 }
 
 .inline-reader__hero img {
-  width: 100%;
+  width: 60%;
+  max-width: 432px;
+  min-width: 280px;
   height: auto;
   display: block;
   border: var(--border-img);
   border-radius: 4px;
+  margin: 0 auto var(--space-lg);
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.2s ease;
+}
+
+.inline-reader__hero img:hover {
+  transform: scale(1.015);
+  filter: brightness(1.05);
 }
 
 @media (max-width: 900px) {
@@ -1569,3 +1598,91 @@ img {
     height: 14px;
   }
 }
+
+/* ==========================================================================
+   LIGHTBOX OVERLAY (IMAGE POPUP)
+   ========================================================================== */
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(26, 26, 24, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  cursor: zoom-out;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  animation: zoomIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  cursor: default;
+}
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: 75vh;
+  border: 3px solid var(--ink);
+  border-radius: 6px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  object-fit: contain;
+  background-color: var(--surface);
+}
+
+.lightbox-title {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  color: var(--canvas);
+  background-color: var(--ink);
+  padding: 6px 14px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  letter-spacing: var(--ls-tight);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: none;
+  border: none;
+  font-size: 2.2rem;
+  color: var(--canvas);
+  cursor: pointer;
+  line-height: 1;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.lightbox-close:hover {
+  transform: scale(1.15) rotate(90deg);
+  color: #fff;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
