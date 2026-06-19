@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import profileContent from "../data/profileContent";
 import { GridSection, ProjectsSection } from "../components/Bento";
 import ProjectModal from "../components/Modal/ProjectModal";
@@ -15,6 +15,13 @@ export default function ProjectsPage() {
   const { projects } = profileContent;
   const [activeProject, setActiveProject] = useState(null);
   const isDesktop = useIsDesktop();
+
+  // Reset inline reader when user clicks the nav name link
+  useEffect(() => {
+    const onNavHome = () => setActiveProject(null);
+    window.addEventListener("nav-home", onNavHome);
+    return () => window.removeEventListener("nav-home", onNavHome);
+  }, []);
 
   const showInline = isDesktop && activeProject;
 

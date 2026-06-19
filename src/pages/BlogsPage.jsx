@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import profileContent from "../data/profileContent";
 import { GridSection, BlogSection } from "../components/Bento";
 import BlogModal from "../components/Modal/BlogModal";
@@ -16,6 +16,13 @@ export default function BlogsPage() {
   const sortedPosts = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
   const [activePost, setActivePost] = useState(null);
   const isDesktop = useIsDesktop();
+
+  // Reset inline reader when user clicks the nav name link
+  useEffect(() => {
+    const onNavHome = () => setActivePost(null);
+    window.addEventListener("nav-home", onNavHome);
+    return () => window.removeEventListener("nav-home", onNavHome);
+  }, []);
 
   const showInline = isDesktop && activePost;
 

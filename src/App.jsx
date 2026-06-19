@@ -13,15 +13,13 @@ export default function App() {
 
   useEffect(() => {
     const handleImageClick = (e) => {
-      // Check if the clicked element is an img tag inside any article/content or project thumbnail
+      // Only open lightbox for images inside post/project content — NOT card thumbnails
       if (e.target.tagName === "IMG") {
-        const isGalleryImg = e.target.closest(".image-gallery img");
-        const isLedgerImg = e.target.closest(".ledger-body img");
-        const isMarkdownImg = e.target.closest(".markdown-content img");
-        const isProjectThumb = e.target.closest(".project-card__thumb img");
-        const isInlineHero = e.target.closest(".inline-reader__hero img");
+        const isGalleryImg = e.target.closest(".image-gallery");
+        const isLedgerImg = e.target.closest(".ledger-body");
+        const isMarkdownImg = e.target.closest(".markdown-content");
 
-        if (isGalleryImg || isLedgerImg || isMarkdownImg || isProjectThumb || isInlineHero) {
+        if (isGalleryImg || isLedgerImg || isMarkdownImg) {
           e.preventDefault();
           setLightbox({
             src: e.target.src,

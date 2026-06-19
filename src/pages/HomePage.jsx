@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import profileContent from "../data/profileContent";
 import { GridSection, ProjectsSection, BlogSection, IdeasSection, ConnectSection } from "../components/Bento";
 import ProjectModal from "../components/Modal/ProjectModal";
@@ -57,6 +57,13 @@ export default function HomePage() {
     setActivePost(null);
     setActiveIdea(null);
   };
+
+  // Reset inline reader when user clicks the nav name link
+  useEffect(() => {
+    const onNavHome = () => handleClose();
+    window.addEventListener("nav-home", onNavHome);
+    return () => window.removeEventListener("nav-home", onNavHome);
+  }, []);
 
   return (
     <>
